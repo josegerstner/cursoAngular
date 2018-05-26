@@ -1,0 +1,37 @@
+Curso de Angular de: Angular.io
+
+Paso 1. Configurar el  entorno de desarrollo 
+Necesita configurar su entorno de desarrollo antes de poder hacer cualquier cosa.
+Instale Node.js® y npm si aún no están en su máquina.
+Verifique que está ejecutando al menos la versión Node.js 8.xo una versión mayor
+y npm 5.xo superior ejecutando node -vy npm -ven una ventana de terminal / consola. 
+Las versiones anteriores producen errores, pero las versiones más recientes están bien.
+Luego, instale Angular CLI globalmente.
+npm install -g @angular/cli
+
+
+Paso 2. Crea un nuevo  proyecto 
+Abra una ventana de terminal.
+Genere un nuevo proyecto y una aplicación predeterminada ejecutando el siguiente comando:
+ng new my-app
+Angular CLI instala los paquetes npm necesarios, crea los archivos del proyecto y rellena
+el proyecto con una aplicación predeterminada simple. Esto puede llevar algo de tiempo.
+Puede agregar funcionalidad preempaquetada a un nuevo proyecto usando el ng addcomando. 
+El ng addcomando transforma un proyecto aplicando los esquemas en el paquete especificado. 
+Para obtener más información, consulte la documentación de CLI angular.
+Angular Material proporciona esquemas para diseños de aplicaciones típicos. 
+Consulte la documentación del material angular para más detalles.
+
+Paso 3: sirve el la aplicación 
+Ve al directorio del proyecto y ejecuta el servidor.
+cd my-app
+ng serve --open
+El comando ng serve inicia el servidor, mira tus archivos y reconstruye 
+la aplicación a medida que realizas cambios en esos archivos.
+Usar la opción --open (o simplemente -o) abrirá automáticamente su navegador http://localhost:4200/.
+
+Paso 4: Edita tu primer componente angular 
+La CLI creó el primer componente angular para usted. Este es el componente raíz 
+y se llama app-root. Puedes encontrarlo en ./src/app/app.component.ts.
+Abra el archivo del componente y cambie la propiedad title de 'app'a 'Mi Primer App Angular!'.
+
