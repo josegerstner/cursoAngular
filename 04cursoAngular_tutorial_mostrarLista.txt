@@ -1,0 +1,88 @@
+Curso de Angular de: Angular.io
+
+Mostrar una lista de héroes:
+En esta página, expandirás la aplicación Tour of Heroes para mostrar una lista de héroes 
+y permitir a los usuarios seleccionar un héroe y mostrar los detalles del héroe.
+
+Crear mock de héroes:
+Necesitarás algunos héroes para mostrar.
+Eventualmente los obtendrás de un servidor de datos remoto. Por ahora, crearás algunos 
+héroes falsos y pretenderás que provienen del servidor.
+Crea un archivo llamado mock-heroes.ts en la carpeta src/app/. Defina una constante HEROES 
+como una matriz de diez héroes y expórtela. El archivo debería verse así.
+src/app/mock-heroes.ts:
+    import { Hero } from './hero';
+    export const HEROES: Hero[] = [
+        { id: 11, name: 'Mr. Nice' },
+        { id: 12, name: 'Narco' },
+        { id: 13, name: 'Bombasto' },
+        { id: 14, name: 'Celeritas' },
+        { id: 15, name: 'Magneta' },
+        { id: 16, name: 'RubberMan' },
+        { id: 17, name: 'Dynama' },
+        { id: 18, name: 'Dr IQ' },
+        { id: 19, name: 'Magma' },
+        { id: 20, name: 'Tornado' }
+    ];
+
+Mostrando los héroes:
+Estás a punto de mostrar la lista de héroes en la parte superior de HeroesComponent.
+Abra el archivo de clase HeroesComponent e importe el mock de HEROES.
+src/app/heroes/heroes.component.ts (HEROES de importación)
+    import { HEROES } from '../mock-heroes';
+Agregue una propiedad  heroes a la clase que expone a estos héroes para el enlace.
+    heroes = HEROES;
+
+Enumerar héroes con *ngFor:
+Abra el archivo de la plantilla HeroesComponent y realice los siguientes cambios:
+- Agrega una <h2>en la parte superior,
+- A continuación, agregue una lista desordenada de HTML (<ul>)
+- Inserte un <li> dentro del <ul> que muestre propiedades de a hero.
+- Espolvoree algunas clases de CSS para el estilo (agregará los estilos CSS en breve).
+Haz que se vea así:
+heroes.component.html (plantilla de héroes):
+    <h2>My Heroes</h2>
+    <ul class="heroes">
+        <li>
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </li>
+    </ul>
+Ahora cambia <li> a esto:
+    <li *ngFor="let hero of heroes">
+*ngFor es la directiva de repetición de Angular. 
+Repite el elemento host para cada elemento en una lista.
+En este ejemplo
+    - <li> es el elemento host
+    - heroes es la lista de la clase HeroesComponent.
+    - hero contiene el objeto héroe actual para cada iteración a través de la lista.
+No olvides el asterisco (*) al frente del ngFor. Es una parte crítica de la sintaxis.
+Después de que el navegador se actualiza, aparece la lista de héroes.
+
+Estilo de los héroes:
+La lista de héroes debe ser atractiva y debe responder visualmente cuando los usuarios 
+se ciernen encima y seleccionan un héroe de la lista.
+En el primer tutorial, se establecen los estilos básicos para toda la aplicación en styles.css. 
+Esa hoja de estilo no incluía estilos para esta lista de héroes.
+Puede agregar más estilos styles.css y seguir creciendo esa hoja de estilos a medida que 
+agrega componentes.
+En su lugar, puede preferir definir estilos privados para un componente específico y 
+mantener todo junto con un componente, el código, el HTML y el CSS, en un solo lugar.
+Este enfoque hace que sea más fácil reutilizar el componente en otro lugar y entregar la 
+apariencia prevista del componente, incluso si los estilos globales son diferentes.
+Usted define estilos privados ya sea en línea en la matriz @Component.styles o como archivos
+de hoja de estilo identificados en la matriz @Component.styleUrls.
+src/app/heroes/heroes.component.ts (@Component):
+    @Component({
+        selector: 'app-heroes',
+        templateUrl: './heroes.component.html',
+        styleUrls: ['./heroes.component.css']
+    })
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,215 @@
+Curso de Angular de: Angular.io
+
+INICIO RÁPIDO:
+
+Paso 1. Configurar el  entorno de desarrollo 
+Necesita configurar su entorno de desarrollo antes de poder hacer cualquier cosa.
+Instale Node.js® y npm si aún no están en su máquina.
+Verifique que está ejecutando al menos la versión Node.js 8.xo una versión mayor
+y npm 5.xo superior ejecutando node -vy npm -ven una ventana de terminal / consola. 
+Las versiones anteriores producen errores, pero las versiones más recientes están bien.
+Luego, instale Angular CLI globalmente.
+    npm install -g @angular/cli
+
+
+Paso 2. Crea un nuevo  proyecto 
+Abra una ventana de terminal.
+Genere un nuevo proyecto y una aplicación predeterminada ejecutando el siguiente comando:
+    ng new my-app
+Angular CLI instala los paquetes npm necesarios, crea los archivos del proyecto y rellena
+el proyecto con una aplicación predeterminada simple. Esto puede llevar algo de tiempo.
+Puede agregar funcionalidad preempaquetada a un nuevo proyecto usando el ng addcomando. 
+El ng addcomando transforma un proyecto aplicando los esquemas en el paquete especificado. 
+Para obtener más información, consulte la documentación de CLI angular.
+Angular Material proporciona esquemas para diseños de aplicaciones típicos. 
+Consulte la documentación del material angular para más detalles.
+
+Paso 3: Serve a la aplicación 
+Ve al directorio del proyecto y ejecuta el servidor.
+    cd my-app
+    ng serve --open
+El comando ng serve inicia el servidor, mira tus archivos y reconstruye 
+la aplicación a medida que realizas cambios en esos archivos.
+Usar la opción --open (o simplemente -o) abrirá automáticamente su navegador http://localhost:4200/.
+
+Paso 4: Edita tu primer componente angular 
+La CLI creó el primer componente angular para usted. Este es el componente raíz 
+y se llama app-root. Puedes encontrarlo en ./src/app/app.component.ts.
+Abra el archivo del componente y cambie la propiedad title de 'app'a 'Mi Primer App Angular!'.
+    export class AppComponent {
+    title = 'Mi Primer App Angular!';
+    }
+
+El navegador se recarga automáticamente con el título revisado. 
+Eso es bueno, pero podría verse mejor.
+Abra src/app/app.component.css y dele al componente un poco de estilo.
+    h1 {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+    }
+¡Lucie bien!
+
+- ¿Que sigue? 
+Eso es todo lo que esperarías hacer en una aplicación "Hello, World".
+Ya está listo para tomar el Tutorial de Tour of Heroes y crear una pequeña 
+aplicación que demuestre las grandes cosas que puede construir con Angular.
+O puede quedarse un poco más para conocer los archivos en su nuevo proyecto.
+
+- Revisión de los archivos del proyecto
+Un proyecto de CLI angular es la base para experimentos rápidos y soluciones empresariales.
+El primer archivo que debes verificar es README.md. 
+Tiene información básica sobre cómo usar los comandos CLI. 
+Cuando quiera saber más sobre cómo funciona la CLI angular, asegúrese de visitar el 
+repositorio y Wiki de Angular CLI .
+
+- Carpeta src
+Tu aplicación vive en la carpeta src. Todos los componentes de angular, plantillas, 
+estilos, imágenes y cualquier otra cosa que necesite su aplicación van aquí. 
+Cualquier archivo fuera de esta carpeta está destinado a ayudar a construir su aplicación.
+src
+    app
+        app.component.css
+        app.component.html
+        app.component.spec.ts
+        app.component.ts
+        app.module.ts
+    assets
+        .gitkeep
+    environments
+        environment.prod.ts
+        environment.ts
+    browserslist
+    favicon.ico
+    index.html
+    karma.conf.js
+    main.ts
+    polyfills.ts
+    styles.css
+    test.ts
+    tsconfig.app.json
+    tsconfig.spec.json
+    tslint.json
+
+app/app.component.{ts,html,css,spec.ts}
+    :   Define el AppComponent junto con una plantilla HTML, hoja de estilo CSS y una prueba unitaria. 
+        Es el componente raíz de lo que se convertirá en un árbol de componentes anidados a medida que 
+        la aplicación evoluciona.
+app/app.module.ts
+    :   Define AppModule, el módulo raíz que le dice a Angular cómo armar la aplicación. 
+        En este momento declara solo el AppComponent. Pronto habrá más componentes para declarar.
+assets/*
+    :   Una carpeta donde puedes poner imágenes y todo lo demás para copiar al por mayor 
+        cuando construyes tu aplicación.
+environments/*
+    :   Esta carpeta contiene un archivo para cada uno de sus entornos de destino, 
+        cada uno exportando variables de configuración simples para usar en su aplicación. 
+        Los archivos se reemplazan sobre la marcha cuando construyes tu aplicación. 
+        Puede utilizar un punto final de API diferente para el desarrollo que para la 
+        producción o quizás diferentes tokens de análisis. Incluso podría usar algunos 
+        servicios falsos. De cualquier forma, la CLI lo tiene cubierto.
+browserslist
+    :   Un archivo de configuración para compartir navegadores de destino entre 
+        diferentes herramientas de front-end.
+favicon.ico
+    :   Todos los sitios quieren verse bien en la barra de marcadores. 
+        Comience con su propio ícono angular.
+index.html
+    :   La página HTML principal que se sirve cuando alguien visita su sitio. La mayoría 
+        de las veces, nunca necesitarás editarlo. La CLI agrega automáticamente todos los
+        archivos js y css cuando la construcción de su aplicación por lo que no será necesario
+        añadir ninguna etiqueta <script> o <link> aquí manualmente.
+karma.conf.js
+    :   Configuración de prueba unitaria para el corrector de prueba Karma, que se usa cuando
+        se ejecuta ng test.
+main.ts
+    :   El principal punto de entrada para tu aplicación. Compila la aplicación con el compilador 
+        JIT y arranca el módulo raíz de la aplicación (AppModule) para que se ejecute en el 
+        navegador. También puede usar el compilador AOT sin cambiar ningún código agregando 
+        el --aotindicador a los comandos ng build y ng serve.
+polyfills.ts
+    :   Los diferentes navegadores tienen diferentes niveles de compatibilidad con los 
+        estándares web. Los polyfills ayudan a normalizar esas diferencias. Debería estar 
+        bastante seguro con core-js y zone.js, pero asegúrese de consultar la guía de soporte 
+        del navegador para obtener más información.
+styles.css
+    :   Tus estilos globales van aquí. La mayoría de las veces querrá tener estilos locales 
+        en sus componentes para facilitar el mantenimiento, pero los estilos que afectan a 
+        toda su aplicación deben estar en un lugar central.
+test.ts
+    :   Este es el principal punto de entrada para las pruebas de su unidad. Tiene una 
+        configuración personalizada que puede ser desconocida, pero no es algo que deba editar.
+tsconfig.{app|spec}.json
+    :   Configuración del compilador de TypeScript para la aplicación Angular (tsconfig.app.json) 
+        y para las pruebas unitarias (tsconfig.spec.json).
+tslint.json
+    :   Configuración de destello adicional para TSLint junto con Codelyzer, utilizado durante
+        la ejecución ng lint. Linting ayuda a mantener un estilo de código consistente.
+
+- La carpeta /
+La carpeta src/ es solo uno de los elementos dentro de la carpeta raíz del proyecto. Otros 
+archivos lo ayudan a construir, probar, mantener, documentar y desplegar la aplicación. Estos 
+archivos van en la carpeta raíz al lado de src/.
+my-app
+    e2e
+        src
+            app.e2e-spec.ts
+            app.po.ts
+        tsconfig.e2e.json
+        protractor.conf.js
+    node_modules/...
+    src/...
+        karma.conf.js
+    .editorconfig
+    .gitignore
+    angular.json
+    package.json
+    README.md
+    tsconfig.json
+    tslint.json
+
+e2e/
+    :   Dentro e2e/ vive las pruebas de extremo a extremo. No deberían estar dentro src/ porque 
+        las pruebas e2e son realmente una aplicación separada que da la casualidad de que prueban 
+        tu aplicación principal. Por eso también tienen el suyo tsconfig.e2e.json.
+node_modules/
+    :   Node.js crea esta carpeta y coloca todos los módulos de terceros enumerados en el 
+        package.json.
+.editorconfig
+    :   Configuración simple de su editor para asegurarse de que todos los que usan su proyecto 
+        tengan la misma configuración básica. La mayoría de los editores admiten un 
+        .editorconfigarchivo. Vea http://editorconfig.org para más información.
+.gitignore
+    :   Configuración de Git para garantizar que los archivos autogenerados no estén 
+        comprometidos con el control de origen.
+angular.json
+    :   Configuración para angular CLI. En este archivo puede establecer varios valores 
+        predeterminados y también configurar qué archivos se incluyen cuando se construye 
+        su proyecto. Consulte la documentación oficial si quiere saber más.
+package.json
+    :   La configuración npm que enumera los paquetes de terceros que utiliza su proyecto. 
+        También puede agregar sus propios scripts personalizados aquí.
+protractor.conf.js
+    :   Configuración de prueba de extremo a extremo para transportador, utilizado durante 
+        la ejecución ng e2e.
+README.md
+    :   Documentación básica para su proyecto, precompletada con información del comando CLI. 
+        ¡Asegúrese de mejorarlo con la documentación del proyecto para que cualquier persona 
+        que revise el repositorio pueda construir su aplicación!
+tsconfig.json
+    :   Configuración del compilador de TypeScript para que su IDE recoja y le proporcione 
+        herramientas útiles.
+tslint.json
+    :   Configuración de hilos para TSLint junto con Codelyzer, utilizado durante la 
+        ejecución ng lint. Linting ayuda a mantener un estilo de código consistente.
+
+
+
+
+
+
+
+
+
+
+

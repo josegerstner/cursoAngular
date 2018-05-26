@@ -1,0 +1,101 @@
+Curso de Angular de: Angular.io
+
+The Application Shell
+
+Instalar el Angular CLI (cliente de Angular):
+    npm install -g @angular/cli
+
+Crear una nueva aplicación:
+Cree un nuevo proyecto nombrado angular-tour-of-heroes con este comando CLI:
+    ng new angular-tour-of-heroes
+Angular CLI generó un nuevo proyecto con una aplicación predeterminada y archivos de respaldo.
+Puede agregar funcionalidad preempaquetada a un nuevo proyecto usando el comando ng add. 
+El comando ng add transforma un proyecto aplicando los esquemas en el paquete especificado. 
+Para obtener más información, consulte la documentación de Angular CLI.
+Angular Material proporciona esquemas para diseños de aplicaciones típicos. 
+Consulte la documentación del material angular para más detalles.
+
+Serve a la aplicación:
+Ve al directorio del proyecto y ejecuta la aplicación.
+    cd angular-tour-of-heroes
+    ng serve --open
+El comando ng serve crea la aplicación, inicia el servidor de desarrollo, mira los archivos 
+fuente y reconstruye la aplicación a medida que realiza cambios en esos archivos.
+La bandera --open abre un navegador para http://localhost:4200/.
+Debería ver la aplicación ejecutándose en su navegador.
+
+Angular components:
+La página que ves es el shell de la aplicación. El shell está controlado por un componente 
+Angular llamado AppComponent.
+Los componentes son los componentes fundamentales de las aplicaciones Angular. Muestran datos 
+en la pantalla, escuchan la entrada del usuario y toman medidas en función de esa entrada.
+
+Cambiar el título de la aplicación:
+Abra el proyecto en su editor favorito o IDE y navegue a la carpeta /src/app.
+Encontrará la implementación del shell AppComponent distribuida en tres archivos:
+1- app.component.ts: el código de clase componente, escrito en TypeScript.
+2- app.component.html: la plantilla del componente, escrita en HTML.
+3. app.component.css: los estilos de CSS privados del componente.
+Abra el archivo de clase de componente (app.component.ts) y cambie el valor de la propiedad title
+a 'Tour of Heroes'.
+    title = 'Tour of Heroes';
+Abra el archivo de plantilla de componente (app.component.html) y elimine la 
+plantilla predeterminada generada por la CLI angular. Reemplácelo con la siguiente línea de HTML.
+    <h1>{{title}}</h1>
+Las llaves dobles son la sintaxis de unión de interpolación de Angular. Este enlace de 
+interpolación presenta el valor title de propiedad del componente dentro de la etiqueta 
+de encabezado HTML.
+El navegador se actualiza y muestra el nuevo título de la aplicación.
+
+Agregar estilos de aplicación:
+La mayoría de las aplicaciones se esfuerzan por obtener un aspecto uniforme en toda la aplicación. 
+La CLI generó un styles.css vacío para este propósito. Coloque allí sus estilos para toda 
+la aplicación.
+He aquí un extracto de la styles.css para la aplicación de ejemplo 'tour de los Héroes'.
+    /* Application-wide Styles */
+    h1 {
+        color: #369;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 250%;
+    }
+    h2, h3 {
+        color: #444;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+    }
+    body {
+        margin: 2em;
+    }
+    body, input[text], button {
+        color: #888;
+        font-family: Cambria, Georgia;
+    }
+    /* everywhere else */
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+Revisión del código final:
+El código fuente de este tutorial y los estilos globales completos de Tour of Heroes están 
+disponibles en
+ejemplo en vivo: https://angular.io/generated/live-examples/toh-pt0/stackblitz.html
+ejemplo de descarga: https://angular.io/generated/zips/toh-pt0/toh-pt0.zip
+
+Resumen:
+- Creó la estructura de la aplicación inicial utilizando Angular CLI.
+- Aprendió que los componentes angulares muestran datos.
+- Usó las llaves dobles de interpolación para mostrar el título de la aplicación.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

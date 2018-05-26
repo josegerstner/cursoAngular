@@ -1,0 +1,68 @@
+Curso de Angular de: Angular.io
+
+Tutorial: Tour of Heroes
+El tutorial de Tour of Heroes cubre los fundamentos de Angular. 
+En este tutorial creará una aplicación que ayuda a una agencia de personal a administrar 
+su establo de héroes.
+Esta aplicación básica tiene muchas de las características que esperarías encontrar en una 
+aplicación basada en datos. Adquiere y muestra una lista de héroes, edita los detalles de 
+un héroe seleccionado y navega entre diferentes vistas de datos heroicos.
+
+Al final del tutorial, podrá hacer lo siguiente:
+-   Utilizar las directivas angular incorporadas para mostrar y ocultar elementos 
+    y mostrar listas de datos de héroes.
+-   Crear componentes angular para mostrar los detalles del héroe y mostrar una serie de héroes.
+-   Usar un enlace de datos de una vía para datos de solo lectura.
+-   Agregar campos editables para actualizar un modelo con enlace de datos bidireccional.
+-   Vincular los métodos de los componentes con los eventos del usuario, como las pulsaciones
+    de teclas y los clics.
+-   Permitir que los usuarios seleccionen un héroe de una lista maestra y editarlo en la 
+    vista de detalles.
+-   Formatear datos con tuberías (pipes).
+-   Crear un servicio compartido para armar a los héroes.
+-   Usar el enrutamiento para navegar entre diferentes vistas y sus componentes.
+
+Aprenderá lo suficiente de Angular para comenzar y tendrá la confianza de que Angular puede hacer
+lo que necesite.
+Después de completar todos los pasos del tutorial, la aplicación final se verá así 
+ejemplo en vivo: https://angular.io/generated/live-examples/toh-pt6/stackblitz.html
+ejemplo de descarga: https://angular.io/generated/zips/toh-pt6/toh-pt6.zip
+
+
+- Lo que vas a construir 
+Aquí hay una idea visual de a dónde conduce este tutorial, comenzando con la vista "Tablero" 
+y los héroes más heroicos:
+https://angular.io/generated/images/guide/toh/heroes-dashboard-1.png
+
+Puede hacer clic en los dos enlaces sobre el tablero ("Tablero" y "Héroes") para navegar 
+entre esta vista del Tablero y una vista de Héroes.
+Si hace clic en el héroe del tablero "Magneta", el enrutador abre una vista de 
+"Detalles del héroe" donde puede cambiar el nombre del héroe.
+https://angular.io/generated/images/guide/toh/hero-details-1.png
+
+Al hacer clic en el botón "Atrás", volverá al panel. Los enlaces en la parte superior te 
+llevan a cualquiera de las vistas principales. Si hace clic en "Héroes", la aplicación muestra 
+la vista de la lista maestra "Héroes".
+https://angular.io/generated/images/guide/toh/heroes-list-2.png
+
+Cuando haces clic en un nombre de héroe diferente, el mini detalle de solo lectura debajo 
+de la lista refleja la nueva opción.
+Puede hacer clic en el botón "Ver detalles" para explorar los detalles editables del 
+héroe seleccionado.
+El siguiente diagrama captura todas las opciones de navegación.
+https://angular.io/generated/images/guide/toh/nav-diagram.png
+
+Aquí está la aplicación en acción:
+https://angular.io/generated/images/guide/toh/toh-anim.gif
+
+
+
+
+
+
+
+
+
+
+
+

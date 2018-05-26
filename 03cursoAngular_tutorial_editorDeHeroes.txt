@@ -1,0 +1,183 @@
+Curso de Angular de: Angular.io
+
+El editor de héroes
+La aplicación ahora tiene un título básico. A continuación, creará un nuevo componente 
+para mostrar la información del héroe y colocar ese componente en el shell de la aplicación.
+
+Crear el componente héroes
+Utilizando angular CLI, genere un nuevo componente llamado heroes.
+    ng generate component heroes
+La CLI crea una nueva carpeta src/app/heroes/ y genera los tres archivos de HeroesComponent.
+El archivo de clase HeroesComponent es el siguiente:
+    import { Component, OnInit } from '@angular/core';
+    @Component({
+        selector: 'app-heroes',
+        templateUrl: './heroes.component.html',
+        styleUrls: ['./heroes.component.css']
+    })
+    export class HeroesComponent implements OnInit {
+        constructor() { }
+        ngOnInit() {
+        }
+    }
+Siempre importa el símbolo Component de la biblioteca central Angular y anota la clase 
+de componente con .@Component
+@Component es una función de decorador que especifica los metadatos angulares para el componente.
+La CLI generó tres propiedades de metadatos:
+    1.selector: selector de elemento CSS del componente
+    2.templateUrl: la ubicación del archivo de plantilla del componente.
+    3.styleUrls: la ubicación de los estilos de CSS privados del componente.
+El selector de elementos CSS, 'app-heroes', coincide con el nombre del elemento 
+HTML que identifica este componente dentro de la plantilla de un componente de los padres.
+El ngOnInit es un enganche de ciclo de vida. Angular llama a ngOnInit poco después de crear 
+un componente. Es un buen lugar para poner la lógica de inicialización.
+Siempre la clase de componentes export para que pueda importen otro lugar ... 
+como en el AppModule.
+
+Agregar una propiedad héroe:
+Agregue una propiedad hero al héroe HeroesComponent llamado "Tormenta de viento".
+    hero = 'Windstorm';
+
+Mostrar el héroe:
+Abra el archivo heroes.component.html. Elimine el texto predeterminado generado por angular CLI
+y reemplácelo con un enlace de datos a la nueva heropropiedad.
+    {{hero}}
+
+Mostrar la vista HeroesComponent:
+Para mostrar el HeroesComponent, debe agregarlo a la plantilla del shell AppComponent.
+Recuerde que app-heroes es el selector de elementos para HeroesComponent.
+Así que agrega un elemento <app-heroes> al archivo AppComponent de la plantilla, justo 
+debajo del título.
+    <h1>{{title}}</h1>
+    <app-heroes></app-heroes>
+Suponiendo que el comando CLI ng serve aún se está ejecutando, el navegador debe 
+actualizar y mostrar tanto el título de la aplicación como el nombre del héroe.
+
+Crear una clase Hero:
+Un verdadero héroe es más que un nombre.
+Crea una clase Hero en su propio archivo en la carpeta src/app. Darle propiedades id y name.
+    export class Hero {
+        id: number;
+        name: string;
+    }
+Regrese a la clase HeroesComponent e importe la clase Hero.
+Refactorizar la propiedad hero del componente para que sea de tipo Hero. 
+Inicialízalo con una id de 1 y el name Windstorm.
+El archivo HeroesComponent de clase revisado debería verse así:
+    import { Component, OnInit } from '@angular/core';
+    import { Hero } from '../hero';
+    @Component({
+        selector: 'app-heroes',
+        templateUrl: './heroes.component.html',
+        styleUrls: ['./heroes.component.css']
+    })
+    export class HeroesComponent implements OnInit {
+        hero: Hero = {
+            id: 1,
+            name: 'Windstorm'
+        };
+        constructor() { }
+        ngOnInit() {
+        }
+    }
+La página ya no se muestra correctamente porque ha cambiado el héroe de una cadena a un objeto.
+
+Mostrar el objeto héroe:
+Actualice el enlace en la plantilla para anunciar el nombre del héroe y mostrar ambos id y name 
+en un diseño de detalles como este:
+    <h2>{{ hero.name }} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <div><span>name: </span>{{hero.name}}</div>
+El navegador se actualiza y muestra la información del héroe.
+
+Formatee con el UppercasePipe:
+Modificar el enlace hero.name de esta manera.
+    <h2>{{ hero.name | uppercase }} Details</h2>
+El navegador se actualiza y ahora el nombre del héroe se muestra en letras mayúsculas.
+La palabra uppercase en el enlace de interpolación, justo después del operador de tubería (|),
+activa el built-in UppercasePipe.
+Las tuberías (pipes) son una buena forma de formatear cadenas, cantidades de moneda, 
+fechas y otros datos de visualización. Angular contruye varias tuberías integradas 
+y puede crear las suyas propias.
+
+Edita el héroe:
+Los usuarios deberían poder editar el nombre del héroe en un cuadro de texto <input>.
+El cuadro de texto debe mostrar la propiedad name del héroe y actualizar esa propiedad 
+a medida que el usuario escribe. Eso significa que el flujo de datos de la clase de 
+componente sale a la pantalla y de la pantalla a la clase .
+Para automatizar ese flujo de datos, configure un enlace de datos bidireccional entre el
+elemento <input> del formulario y la propiedad hero.name.
+
+Enlace bidireccional:
+Refactorice el área de detalles en la plantilla HeroesComponent para que se vea así:
+src/app/heroes/heroes.component.html (plantilla de HeroesComponent):
+    <div>
+        <label>name:
+            <input [(ngModel)]="hero.name" placeholder="name">
+        </label>
+    </div>
+[(ngModel)] es la sintaxis de enlace de datos bidireccional de Angular.
+Aquí vincula la propiedad hero.name al cuadro de texto HTML para que los datos fluyan en
+ambas direcciones: de la propiedad hero.name al cuadro de texto y del cuadro de texto a 
+la hero.name.
+
+El FormsModule que falta:
+Observe que la aplicación dejó de funcionar cuando agregó .[(ngModel)]
+Para ver el error, abra las herramientas de desarrollo del navegador y busque en la consola 
+un mensaje como
+    Template parse errors:
+    Can't bind to 'ngModel' since it isn't a known property of 'input'.
+Aunque ngModel es una directiva angular válida, no está disponible por defecto.
+Pertenece a la opción FormsModule y debe optar por usarla.
+
+AppModule:
+Angular necesita saber cómo encajan las piezas de su aplicación y qué otros archivos y 
+bibliotecas necesita la aplicación. Esta información se llama metadata.
+Algunos de los metadatos están en los decoradores que agregó a sus clases de componentes.
+Otros metadatos críticos están en el decorador @NgModule.
+El decorador más importante anota la clase AppModule de nivel superior .@NgModule.
+El Angular CLI generó una clase AppModule src/app/app.module.ts cuando creó el proyecto. 
+Aquí es donde puedes optar por el FormsModule.
+
+Importar FormsModule:
+Abra AppModule (app.module.ts) e importe el símbolo FormsModule de la biblioteca @angular/forms.
+app.module.ts (FormsModule symbol import):
+    import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+A continuación, agregue FormsModule a la matriz imports de los metadatos de @NgModule, que 
+contiene una lista de módulos externos que la aplicación necesita.
+app.module.ts (@NgModule imports):
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
+Cuando el navegador se actualice, la aplicación debería funcionar nuevamente. Puede editar el 
+nombre del héroe y ver los cambios reflejados inmediatamente en el cuadro de texto <h2> de arriba.
+
+Declarar HeroesComponent:
+Cada componente debe declararse en exactamente un NgModule .
+No declaraste el HeroesComponent. Entonces, ¿por qué funcionó la aplicación?
+Funcionó porque la Angular CLI declaró HeroesComponent en el AppModule cuando generó 
+ese componente.
+Abra src/app/app.module.ts y encuentre HeroesComponent importado cerca de la parte superior.
+app.module.ts (importación del símbolo FormsModule):
+    import { HeroesComponent } from './heroes/heroes.component';
+El HeroesComponent está declarado en la matriz @NgModule.declarations.
+Tenga en cuenta que AppModule declara ambos componentes de la aplicación, 
+AppComponent y HeroesComponent.
+
+Revisión del código final:
+Tu aplicación debería verse así 
+ejemplo en vivo: https://angular.io/generated/live-examples/toh-pt1/stackblitz.html
+ejemplo de descarga: https://angular.io/generated/zips/toh-pt1/toh-pt1.zip
+
+Resumen:
+- Usaste la CLI para crear un segundo HeroesComponent.
+- Mostró el HeroesComponent al agregarlo al shell AppComponent.
+- Usted aplicó el UppercasePipe para formatear el nombre.
+- Usó el enlace de datos bidireccional con la directiva ngModel.
+- Has aprendido sobre el AppModule.
+- Importó el FormsModule en el AppModule para que Angular reconociera y 
+    aplicara la directiva ngModel.
+- Aprendió la importancia de declarar componentes en AppModule y reconoció que la CLI 
+    lo declaró por usted.
+
