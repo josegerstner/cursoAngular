@@ -77,12 +77,123 @@ src/app/heroes/heroes.component.ts (@Component):
         templateUrl: './heroes.component.html',
         styleUrls: ['./heroes.component.css']
     })
+Abra el archivo heroes.component.css y pegue los estilos CSS privados para HeroesComponent. 
+Los encontrará en la revisión final del código al final de esta guía.
+Los estilos y las hojas de estilo identificadas en metadatos @Component tienen un alcance para 
+ese componente específico. Los estilos heroes.component.css se aplican solo al HeroesComponent 
+y no afectan al HTML externo o al HTML en ningún otro componente.
 
+Master/Detail:
+Cuando el usuario hace clic en un héroe en la lista maestra, el componente debe mostrar 
+los detalles del héroe seleccionado en la parte inferior de la página.
+En esta sección, escucharás el evento de clic del elemento héroe y actualizarás el detalle 
+del héroe.
 
+Agregar un enlace de evento de clic:
+Agregue un enlace de evento de clic al <li> siguiente:
+heroes.component.html (extracto de la plantilla):
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+Este es un ejemplo de la sintaxis de enlace de eventos de Angular.
+Los paréntesis a su alrededor click indican a Angular que escuche el evento <li> del elemento 
+click. Cuando el usuario hace clic en <li>, Angular ejecuta la expresión onSelect(hero).
+onSelect()es un método de HeroesComponent que estás a punto de escribir. Angular lo llama 
+con el objeto hero que se muestra en el clic <li>, el mismo hero definido previamente en la 
+expresión *ngFor.
 
+Agregue el controlador de eventos click:
+Cambie el nombre de la propiedad hero del componente a, selectedHero pero no lo asigne. 
+No hay un héroe seleccionado cuando se inicia la aplicación.
+Agregue el siguiente método onSelect(), que asigna el héroe cliqueado de la plantilla 
+al componente selectedHero.
+src/app/heroes/heroes.component.ts (onSelect):
+selectedHero: Hero;
+    onSelect(hero: Hero): void {
+        this.selectedHero = hero;
+    }
 
+Actualice la plantilla de detalles:
+La plantilla todavía se refiere a la propiedad hero anterior del componente que ya no existe. 
+Cambiar el nombre hero a selectedHero.
+heroes.component.html (detalles del héroe seleccionados):
+    <h2>{{ selectedHero.name | uppercase }} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+        <label>name:
+            <input [(ngModel)]="selectedHero.name" placeholder="name">
+        </label>
+    </div>
 
+Ocultar detalles vacíos con *ngIf:
+Después de que el navegador se actualiza, la aplicación está rota.
+Abra las herramientas del desarrollador del navegador y busque en la consola un mensaje 
+de error como este:
+    HeroesComponent.html:3 ERROR TypeError: Cannot read property 'name' of undefined
+Ahora haga clic en uno de los elementos de la lista. La aplicación parece estar funcionando 
+de nuevo. Los héroes aparecen en una lista y los detalles sobre el héroe cliqueado aparecen 
+en la parte inferior de la página.
+¿Que pasó? 
+Cuando se inicia la aplicación, selectedHero es undefined por diseño .
+Las expresiones vinculantes en la plantilla que hacen referencia a propiedades de selectedHero
+-- expresiones como {{selectedHero.name}}-- deben fallar porque no hay un héroe seleccionado.
 
+La reparación:
+El componente solo debería mostrar los detalles del héroe seleccionado si existe selectedHero.
+Envuelva el HTML de detalles del héroe en un <div>. Agregue la directiva de Angular *ngIf a 
+<div> y configúrela a selectedHero.
+No olvides el asterisco (*) al frente ngIf. Es una parte crítica de la sintaxis.
+src/app/heroes/heroes.component.html (* ngIf):
+    <div *ngIf="selectedHero">
+        <h2>{{ selectedHero.name | uppercase }} Details</h2>
+        <div><span>id: </span>{{selectedHero.id}}</div>
+        <div>
+            <label>name:
+            <input [(ngModel)]="selectedHero.name" placeholder="name">
+            </label>
+        </div>
+    </div>
+Después de que el navegador se actualiza, la lista de nombres vuelve a aparecer. El área 
+de detalles está en blanco. Haz clic en un héroe y aparecerán sus detalles.
 
+Por qué funciona:
+Cuando selectedHerono está definido, ngIf elimina los detalles del héroe del DOM. 
+No hay enlaces selectedHero de qué preocuparse.
+Cuando el usuario elige un héroe, selectedHero tiene un valor y ngIf pone el detalle 
+del héroe en el DOM.
 
+Estilo del héroe seleccionado:
+Es difícil identificar al héroe seleccionado en la lista cuando todos los elementos <li> 
+se parecen.
+Si el usuario hace clic en "Magneta", ese héroe debe renderizar con un color de fondo 
+distintivo pero sutil como este:
+https://angular.io/generated/images/guide/toh/heroes-list-selected.png
+Ese color de héroe seleccionado es el trabajo de la clase .selected CSS en los estilos 
+que agregó antes. Solo tiene que aplicar la clase .selected a <li> cuando el usuario haga 
+clic en ella.
+El enlace de clase angular hace que sea fácil agregar y eliminar una clase de CSS 
+condicionalmente. Simplemente agregue [class.some-css-class]="some-condition" al elemento 
+que desea diseñar.
+Agregue el siguiente enlace [class.selected] a <li> en la plantilla HeroesComponent:
+heroes.component.html (alternar la clase CSS 'seleccionada'):
+    [class.selected]="hero === selectedHero"
+Cuando el héroe de la fila actual es el mismo que el selectedHero, Angular agrega la clase 
+selected CSS. Cuando los dos héroes son diferentes, Angular elimina la clase.
+El acabado del <li> se ve así:
+heroes.component.html (elemento de lista héroe):
+    <li *ngFor="let hero of heroes"
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
 
+Revisión del código final:
+Tu aplicación debería verse así 
+ejemplo en vivo: https://angular.io/generated/live-examples/toh-pt2/stackblitz.html
+ejemplo de descarga: https://angular.io/generated/zips/toh-pt2/toh-pt2.zip
+
+Resumen:
+- La aplicación Tour of Heroes muestra una lista de héroes en una vista Master/Detail.
+- El usuario puede seleccionar un héroe y ver los detalles de ese héroe.
+- Usted usó *ngFor para mostrar una lista.
+- Usó *ngIf para incluir o excluir condicionalmente un bloque de HTML.
+- You can toggle a CSS style class with a class binding.
+- Puede alternar una clase de estilo CSS con un enlace class.
