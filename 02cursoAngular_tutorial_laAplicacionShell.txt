@@ -1,4 +1,5 @@
 Curso de Angular de: Angular.io
+https://angular.io/tutorial/toh-pt0
 
 The Application Shell
 
@@ -33,14 +34,16 @@ en la pantalla, escuchan la entrada del usuario y toman medidas en función de e
 Cambiar el título de la aplicación:
 Abra el proyecto en su editor favorito o IDE y navegue a la carpeta /src/app.
 Encontrará la implementación del shell AppComponent distribuida en tres archivos:
-1- app.component.ts: el código de clase componente, escrito en TypeScript.
-2- app.component.html: la plantilla del componente, escrita en HTML.
-3. app.component.css: los estilos de CSS privados del componente.
+    1- app.component.ts: el código de clase componente, escrito en TypeScript.
+    2- app.component.html: la plantilla del componente, escrita en HTML.
+    3. app.component.css: los estilos de CSS privados del componente.
 Abra el archivo de clase de componente (app.component.ts) y cambie el valor de la propiedad title
 a 'Tour of Heroes'.
+app.component.ts (class title property):
     title = 'Tour of Heroes';
 Abra el archivo de plantilla de componente (app.component.html) y elimine la 
 plantilla predeterminada generada por la CLI angular. Reemplácelo con la siguiente línea de HTML.
+app.component.html (template):
     <h1>{{title}}</h1>
 Las llaves dobles son la sintaxis de unión de interpolación de Angular. Este enlace de 
 interpolación presenta el valor title de propiedad del componente dentro de la etiqueta 
@@ -52,6 +55,7 @@ La mayoría de las aplicaciones se esfuerzan por obtener un aspecto uniforme en 
 La CLI generó un styles.css vacío para este propósito. Coloque allí sus estilos para toda 
 la aplicación.
 He aquí un extracto de la styles.css para la aplicación de ejemplo 'tour de los Héroes'.
+src/styles.css (excerpt):
     /* Application-wide Styles */
     h1 {
         color: #369;
@@ -85,17 +89,3 @@ Resumen:
 - Creó la estructura de la aplicación inicial utilizando Angular CLI.
 - Aprendió que los componentes angulares muestran datos.
 - Usó las llaves dobles de interpolación para mostrar el título de la aplicación.
-
-
-
-
-
-
-
-
-
-
-
-
-
-

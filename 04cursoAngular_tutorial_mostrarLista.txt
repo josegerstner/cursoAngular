@@ -1,4 +1,5 @@
 Curso de Angular de: Angular.io
+https://angular.io/tutorial/toh-pt2
 
 Mostrar una lista de héroes:
 En esta página, expandirás la aplicación Tour of Heroes para mostrar una lista de héroes 

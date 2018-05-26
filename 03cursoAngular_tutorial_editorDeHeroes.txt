@@ -1,4 +1,5 @@
 Curso de Angular de: Angular.io
+https://angular.io/tutorial/toh-pt1
 
 El editor de héroes
 La aplicación ahora tiene un título básico. A continuación, creará un nuevo componente 
@@ -9,6 +10,7 @@ Utilizando angular CLI, genere un nuevo componente llamado heroes.
     ng generate component heroes
 La CLI crea una nueva carpeta src/app/heroes/ y genera los tres archivos de HeroesComponent.
 El archivo de clase HeroesComponent es el siguiente:
+app/heroes/heroes.component.ts (initial version):
     import { Component, OnInit } from '@angular/core';
     @Component({
         selector: 'app-heroes',
@@ -36,11 +38,13 @@ como en el AppModule.
 
 Agregar una propiedad héroe:
 Agregue una propiedad hero al héroe HeroesComponent llamado "Tormenta de viento".
+heroes.component.ts (hero property):
     hero = 'Windstorm';
 
 Mostrar el héroe:
 Abra el archivo heroes.component.html. Elimine el texto predeterminado generado por angular CLI
 y reemplácelo con un enlace de datos a la nueva heropropiedad.
+heroes.component.html:
     {{hero}}
 
 Mostrar la vista HeroesComponent:
@@ -48,6 +52,7 @@ Para mostrar el HeroesComponent, debe agregarlo a la plantilla del shell AppComp
 Recuerde que app-heroes es el selector de elementos para HeroesComponent.
 Así que agrega un elemento <app-heroes> al archivo AppComponent de la plantilla, justo 
 debajo del título.
+src/app/app.component.html
     <h1>{{title}}</h1>
     <app-heroes></app-heroes>
 Suponiendo que el comando CLI ng serve aún se está ejecutando, el navegador debe 
@@ -56,6 +61,7 @@ actualizar y mostrar tanto el título de la aplicación como el nombre del héro
 Crear una clase Hero:
 Un verdadero héroe es más que un nombre.
 Crea una clase Hero en su propio archivo en la carpeta src/app. Darle propiedades id y name.
+src/app/hero.ts:
     export class Hero {
         id: number;
         name: string;
@@ -64,6 +70,7 @@ Regrese a la clase HeroesComponent e importe la clase Hero.
 Refactorizar la propiedad hero del componente para que sea de tipo Hero. 
 Inicialízalo con una id de 1 y el name Windstorm.
 El archivo HeroesComponent de clase revisado debería verse así:
+src/app/heroes/heroes.component.ts:
     import { Component, OnInit } from '@angular/core';
     import { Hero } from '../hero';
     @Component({
@@ -85,6 +92,7 @@ La página ya no se muestra correctamente porque ha cambiado el héroe de una ca
 Mostrar el objeto héroe:
 Actualice el enlace en la plantilla para anunciar el nombre del héroe y mostrar ambos id y name 
 en un diseño de detalles como este:
+heroes.component.html (HeroesComponent's template):
     <h2>{{ hero.name }} Details</h2>
     <div><span>id: </span>{{hero.id}}</div>
     <div><span>name: </span>{{hero.name}}</div>

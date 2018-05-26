@@ -1,4 +1,5 @@
 Curso de Angular de: Angular.io
+https://angular.io/tutorial
 
 Tutorial: Tour of Heroes
 El tutorial de Tour of Heroes cubre los fundamentos de Angular. 
@@ -54,15 +55,3 @@ https://angular.io/generated/images/guide/toh/nav-diagram.png
 
 Aquí está la aplicación en acción:
 https://angular.io/generated/images/guide/toh/toh-anim.gif
-
-
-
-
-
-
-
-
-
-
-
-
