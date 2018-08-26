@@ -7,11 +7,20 @@ Paso 1. Configurar el  entorno de desarrollo
 Necesita configurar su entorno de desarrollo antes de poder hacer cualquier cosa.
 Instale Node.js® y npm si aún no están en su máquina.
 Verifique que está ejecutando al menos la versión Node.js 8.xo una versión mayor
-y npm 5.xo superior ejecutando node -vy npm -ven una ventana de terminal / consola. 
+y npm 5.xo superior ejecutando 
+    node -v
+y 
+    npm -v
+en una ventana de terminal / consola. 
 Las versiones anteriores producen errores, pero las versiones más recientes están bien.
 Luego, instale Angular CLI globalmente.
     npm install -g @angular/cli
 
+------------------------------------------------------------------------------------------------
+NOTA: para instalarlo bien tuve que seguir estos pasos porque se me instalaba una versión vieja:
+> curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+> sudo apt-get install -y nodejs
+------------------------------------------------------------------------------------------------
 
 Paso 2. Crea un nuevo  proyecto 
 Abra una ventana de terminal.
